@@ -29,21 +29,19 @@ public class XLSXExporter extends Exporter{
         sheet = workbook.createSheet("Sheet");
     }
     
-    public void writeValue(String[][] array, ArrayList<Integer> colNumber) throws FileNotFoundException, IOException {
-        
+    public void writeValue(String path, String[][] array, int leftUpCol, int leftUpRow) throws FileNotFoundException, IOException {
+        create(path);
         Row row;
         Cell cell;
         for(int i = 0; i < array.length; i++){
-            row = sheet.createRow(i);
+            row = sheet.createRow(i + leftUpRow);
             for(int j = 0; j < array[i].length; j++){
-                cell = row.createCell(colNumber.get(j));
+                cell = row.createCell(j + leftUpCol);
                 cell.setCellValue(array[i][j]);
             }
         }
         workbook.write(fileOutput);
-    }
-    
-    public void close() throws IOException {
         workbook.close();
     }
+    
 }
