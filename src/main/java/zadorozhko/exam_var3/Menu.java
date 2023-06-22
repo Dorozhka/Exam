@@ -1819,13 +1819,9 @@ public class Menu extends javax.swing.JFrame {
             if (selectedFileName.endsWith(".xlsx") && (!jTextField29.getText().isEmpty())) {
                 sheetNum = Integer.parseInt(jTextField29.getText());
             }
-            if(selectedFileName.endsWith(".csv")){
-                ExportRow.setVisible(true);
-                ExportRow.setBounds(200, 100, 600, 300);
-            } else {
-                ExportLeftUp.setVisible(true);
-                ExportLeftUp.setBounds(200, 100, 600, 300);
-            }
+            
+            ChooseRow.setVisible(true);
+            ChooseRow.setBounds(200, 100, 600, 300);
         }
         }catch(NumberFormatException e){
             JOptionPane.showMessageDialog(null,"Поля должны быть заполнены неотрицательными целыми числами","Ок",JOptionPane.PLAIN_MESSAGE);
@@ -2161,8 +2157,13 @@ public class Menu extends javax.swing.JFrame {
                 names.add(jTextField80.getText());
                 names.add(jTextField81.getText());
             }
-            ExportRow.setVisible(true);
-            ExportRow.setBounds(200, 100, 600, 300);
+            if(selectedFileName.endsWith(".csv")){
+                ExportRow.setVisible(true);
+                ExportRow.setBounds(200, 100, 600, 300);
+            } else {
+                ExportLeftUp.setVisible(true);
+                ExportLeftUp.setBounds(200, 100, 600, 300);
+            }
         }
         }catch(NumberFormatException e){
             JOptionPane.showMessageDialog(null,"Поля должны быть заполнены неотрицательными целыми числами","Ок",JOptionPane.PLAIN_MESSAGE);

@@ -312,7 +312,7 @@ public class DataManipulation {
                 if(path.endsWith(".xlsx")){
                     xlsxE.writeValue(path, array, leftUpCol, leftUpRow);
                 } else {
-                    
+                    csvE.writeValue(path, array);
                 }
             }else{
                 String[][] array = new String[height+1][length];
@@ -380,7 +380,7 @@ public class DataManipulation {
                 if(path.endsWith(".xlsx")){
                     xlsxE.writeValue(path, array, leftUpCol, leftUpRow);
                 } else {
-                    
+                    csvE.writeValue(path, array);
                 }
             }
         }else{
@@ -439,7 +439,7 @@ public class DataManipulation {
                 if(path.endsWith(".xlsx")){
                     xlsxE.writeValue(path, array, leftUpCol, leftUpRow);
                 } else {
-                    
+                    csvE.writeValue(path, array);
                 }
             }else{
                 String[][] array = new String[height+1][length];
@@ -495,7 +495,7 @@ public class DataManipulation {
                 if(path.endsWith(".xlsx")){
                     xlsxE.writeValue(path, array, leftUpCol, leftUpRow);
                 } else {
-                    
+                    csvE.writeValue(path, array);
                 }
             }
 
