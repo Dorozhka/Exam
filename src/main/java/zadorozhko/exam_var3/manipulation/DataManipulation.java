@@ -89,10 +89,6 @@ public class DataManipulation {
             }
         energies.add(energy);
         
-        for(int i = 0; i < energies.size(); i++){
-            System.out.println(energies.get(i).getIndex());
-        }
-        
         }
         if(path.endsWith("Nuclide.xlsx")){
             Nuclide nuclide = new Nuclide();
@@ -130,10 +126,6 @@ public class DataManipulation {
                 nuclide.setDeltaEps(xlsxI.getValue(path, listNumber, rowNumber, columnNumber.get(10)));
             }
             nuclides.add(nuclide);
-            
-            for(int i = 0; i < nuclides.size(); i++){
-                System.out.println(nuclides.get(i).getName());
-            }
             
         }
         
