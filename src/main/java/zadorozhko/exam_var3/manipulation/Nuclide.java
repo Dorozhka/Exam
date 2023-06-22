@@ -9,17 +9,17 @@ package zadorozhko.exam_var3.manipulation;
  * @author Dasha
  */
 public class Nuclide {
-    private String name;
-    private String E;
-    private String deltaE;
-    private String deltaEPercent;
-    private String PShPV;
-    private String S;
-    private String deltaS;
-    private String deltaSPercent;
-    private String SFull;
-    private String eps;
-    private String deltaEps;
+    private String name = "";
+    private String E = "";
+    private String deltaE = "";
+    private String deltaEPercent = "";
+    private String PShPV = "";
+    private String S = "";
+    private String deltaS = "";
+    private String deltaSPercent = "";
+    private String SFull = "";
+    private String eps = "";
+    private String deltaEps = "";
 
     public String getName() {
         return name;
