@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<energy>
+    <buy></buy>
+    <consumption></consumption>
+    <date>10.2012</date>
+    <getFactG></getFactG>
+    <factP></factP>
+    <HPS></HPS>
+    <index>1 052.97</index>
+    <NPP></NPP>
+    <planG></planG>
+    <planP></planP>
+    <sale></sale>
+    <TPP></TPP>
+    <temperature></temperature>
+    <tg></tg>
+</energy>

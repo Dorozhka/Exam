@@ -4,10 +4,14 @@
  */
 package zadorozhko.exam_var3.manipulation;
 
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+
 /**
  *
  * @author Dasha
  */
+@XmlRootElement(name = "energy")
 public class Energy {
     private String date = "";
     private String index = "";
@@ -24,74 +28,60 @@ public class Energy {
     private String factP = "";
     private String consumption = "";
 
-       /* public Energy(String index, String buy, String sale, String tg, String NPP, String HPS, String TPP, String temperature, String planG, String planP, String factG, String factP, String consumption) {
-            this.index = index;
-            this.buy = buy;
-            this.sale = sale;
-            this.tg = tg;
-            this.NPP = NPP;
-            this.HPS = HPS;
-            this.TPP = TPP;
-            this.temperature = temperature;
-            this.planG = planG;
-            this.planP = planP;
-            this.factG = factG;
-            this.factP = factP;
-            this.consumption = consumption;
-        }*/
-
+    
+    @XmlElement(name = "date")
     public String getDate() {
         return date;
     }
-
+    @XmlElement(name = "index")
     public String getIndex() {
         return index;
     }
-
+    @XmlElement(name = "buy")
     public String getBuy() {
         return buy;
     }
-
+    @XmlElement(name = "sale")
     public String getSale() {
         return sale;
     }
-
+    @XmlElement(name = "tg")
     public String getTg() {
         return tg;
     }
-
+    @XmlElement(name = "NPP")
     public String getNPP() {
         return NPP;
     }
-
+    @XmlElement(name = "HPS")
     public String getHPS() {
         return HPS;
     }
-
+    @XmlElement(name = "TPP")
     public String getTPP() {
         return TPP;
     }
-
+    @XmlElement(name = "temperature")
     public String getTemperature() {
         return temperature;
     }
-
+    @XmlElement(name = "planG")
     public String getPlanG() {
         return planG;
     }
-
+    @XmlElement(name = "planP")
     public String getPlanP() {
         return planP;
     }
-
+    @XmlElement(name = "factG")
     public String getFactG() {
         return factG;
     }
-
+    @XmlElement(name = "factP")
     public String getFactP() {
         return factP;
     }
-
+    @XmlElement(name = "consumption")
     public String getConsumption() {
         return consumption;
     }

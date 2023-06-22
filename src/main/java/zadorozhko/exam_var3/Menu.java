@@ -10,6 +10,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.xml.bind.JAXBException;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import zadorozhko.exam_var3.manipulation.DataManipulation;
 
@@ -27,6 +28,7 @@ public class Menu extends javax.swing.JFrame {
     int leftUpRow = 0;
     DataManipulation dm = new DataManipulation();
     boolean object;
+    boolean a;
     ArrayList<String> names = new ArrayList<>();
 
     /**
@@ -232,6 +234,13 @@ public class Menu extends javax.swing.JFrame {
         jTextField86 = new javax.swing.JTextField();
         ExportLU = new javax.swing.JButton();
         jLabel70 = new javax.swing.JLabel();
+        XMLChoose = new javax.swing.JFrame();
+        jPanel11 = new javax.swing.JPanel();
+        jRadioButton3 = new javax.swing.JRadioButton();
+        jRadioButton4 = new javax.swing.JRadioButton();
+        jLabel71 = new javax.swing.JLabel();
+        ChooseO = new javax.swing.JButton();
+        buttonGroup2 = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         ChooseFile = new javax.swing.JButton();
         Import = new javax.swing.JButton();
@@ -1419,6 +1428,78 @@ public class Menu extends javax.swing.JFrame {
                     .addContainerGap()))
         );
 
+        buttonGroup2.add(jRadioButton3);
+        jRadioButton3.setSelected(true);
+        jRadioButton3.setText("Energy");
+
+        buttonGroup2.add(jRadioButton4);
+        jRadioButton4.setText("Nuclide");
+        jRadioButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton4ActionPerformed(evt);
+            }
+        });
+
+        jLabel71.setText("Выберите объект для экспорта");
+
+        ChooseO.setText("Выбрать");
+        ChooseO.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ChooseOActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
+        jPanel11.setLayout(jPanel11Layout);
+        jPanel11Layout.setHorizontalGroup(
+            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel11Layout.createSequentialGroup()
+                .addGap(38, 38, 38)
+                .addComponent(jRadioButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 97, Short.MAX_VALUE)
+                .addComponent(jRadioButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(57, 57, 57))
+            .addGroup(jPanel11Layout.createSequentialGroup()
+                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel11Layout.createSequentialGroup()
+                        .addGap(96, 96, 96)
+                        .addComponent(jLabel71, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel11Layout.createSequentialGroup()
+                        .addGap(145, 145, 145)
+                        .addComponent(ChooseO)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel11Layout.setVerticalGroup(
+            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel11Layout.createSequentialGroup()
+                .addGap(42, 42, 42)
+                .addComponent(jLabel71)
+                .addGap(52, 52, 52)
+                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jRadioButton3)
+                    .addComponent(jRadioButton4))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
+                .addComponent(ChooseO)
+                .addGap(91, 91, 91))
+        );
+
+        javax.swing.GroupLayout XMLChooseLayout = new javax.swing.GroupLayout(XMLChoose.getContentPane());
+        XMLChoose.getContentPane().setLayout(XMLChooseLayout);
+        XMLChooseLayout.setHorizontalGroup(
+            XMLChooseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(XMLChooseLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        XMLChooseLayout.setVerticalGroup(
+            XMLChooseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, XMLChooseLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         ChooseFile.setText("Выбрать файл");
@@ -1495,7 +1576,7 @@ public class Menu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void ChooseFileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ChooseFileActionPerformed
-        chooser = new JFileChooser(System.getProperty("user.dir") + "\\src\\main\\resources");
+        chooser = new JFileChooser(System.getProperty("user.dir"));
         int a = chooser.showDialog(null, "Выбрать файл");
         if (a != JFileChooser.APPROVE_OPTION) {
             return;
@@ -1867,14 +1948,40 @@ public class Menu extends javax.swing.JFrame {
             return;
         }
         
-        if((!jTextField82.getText().endsWith(".xlsx")) && (!jTextField82.getText().endsWith(".csv"))) {
-            JOptionPane.showMessageDialog(null, "В файл такого формата нельзя записать данные.", "Ок", JOptionPane.PLAIN_MESSAGE);
-            return;
+        if(jTextField82.getText().endsWith(".xml")){
+            if(dm.getEnergies().isEmpty()){
+                try {
+                    selectedFileName = jTextField82.getText();
+                    dm.exportXML(selectedFileName, true);
+                } catch (JAXBException ex) {
+                    Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                JOptionPane.showMessageDialog(null, "Объекты успешно экспортированы!", "Ок", JOptionPane.PLAIN_MESSAGE);
+                return;
+            }
+            if(dm.getNuclides().isEmpty()){
+                try {
+                    selectedFileName = jTextField82.getText();
+                    dm.exportXML(selectedFileName, false);
+                } catch (JAXBException ex) {
+                    Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                JOptionPane.showMessageDialog(null, "Объекты успешно экспортированы!", "Ок", JOptionPane.PLAIN_MESSAGE);
+                return;
+            }
+            selectedFileName = jTextField82.getText();
+            XMLChoose.setVisible(true);
+            XMLChoose.setBounds(200, 100, 500, 300);
+        } else {
+            if((!jTextField82.getText().endsWith(".xlsx")) && (!jTextField82.getText().endsWith(".csv"))) {
+                JOptionPane.showMessageDialog(null, "В файл такого формата нельзя записать данные.", "Ок", JOptionPane.PLAIN_MESSAGE);
+                return;
+            }
+            selectedFileName = jTextField82.getText();
+            WhatObject.setVisible(true);
+            WhatObject.setBounds(200, 100, 500, 300);
         }
         
-        selectedFileName = jTextField82.getText();
-        WhatObject.setVisible(true);
-        WhatObject.setBounds(200, 100, 500, 300);
     }//GEN-LAST:event_ExportActionPerformed
 
     private void ChooseObjectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ChooseObjectActionPerformed
@@ -2219,6 +2326,28 @@ public class Menu extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_ExportRActionPerformed
 
+    private void jRadioButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jRadioButton4ActionPerformed
+
+    private void ChooseOActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ChooseOActionPerformed
+        if(jRadioButton3.isSelected()){
+            try {
+                    dm.exportXML(selectedFileName, false);
+                } catch (JAXBException ex) {
+                    Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                JOptionPane.showMessageDialog(null, "Объекты успешно экспортированы!", "Ок", JOptionPane.PLAIN_MESSAGE);
+        } else {
+            try {
+                    dm.exportXML(selectedFileName, true);
+                } catch (JAXBException ex) {
+                    Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                JOptionPane.showMessageDialog(null, "Объекты успешно экспортированы!", "Ок", JOptionPane.PLAIN_MESSAGE);
+        }
+    }//GEN-LAST:event_ChooseOActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -2259,6 +2388,7 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JFrame ChooseColNuclide;
     private javax.swing.JButton ChooseFile;
     private javax.swing.JFrame ChooseLeftUp;
+    private javax.swing.JButton ChooseO;
     private javax.swing.JButton ChooseObject;
     private javax.swing.JFrame ChooseRow;
     private javax.swing.JButton EnterLeftUpE;
@@ -2278,7 +2408,9 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JButton SaveColE;
     private javax.swing.JButton SaveColN;
     private javax.swing.JFrame WhatObject;
+    private javax.swing.JFrame XMLChoose;
     private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -2347,10 +2479,12 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel69;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel70;
+    private javax.swing.JLabel jLabel71;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
+    private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
@@ -2361,6 +2495,8 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel9;
     private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JRadioButton jRadioButton2;
+    private javax.swing.JRadioButton jRadioButton3;
+    private javax.swing.JRadioButton jRadioButton4;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField10;
     private javax.swing.JTextField jTextField11;

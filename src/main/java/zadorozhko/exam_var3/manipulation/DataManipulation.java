@@ -6,9 +6,11 @@ package zadorozhko.exam_var3.manipulation;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import javax.xml.bind.JAXBException;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import zadorozhko.exam_var3.exporters.CSVExporter;
 import zadorozhko.exam_var3.exporters.XLSXExporter;
+import zadorozhko.exam_var3.exporters.XMLExporter;
 import zadorozhko.exam_var3.importers.CSVImporter;
 import zadorozhko.exam_var3.importers.XLSXImporter;
 
@@ -31,6 +33,15 @@ public class DataManipulation {
     private CSVImporter csvI = new CSVImporter();
     private XLSXExporter xlsxE = new XLSXExporter();
     private CSVExporter csvE = new CSVExporter();
+    private XMLExporter xmlE = new XMLExporter();
+    
+    public void exportXML(String path, boolean a) throws JAXBException {
+        if(a){
+            xmlE.createNuclide(path, nuclides.get(0));
+        } else {
+            xmlE.createEnergy(path, energies.get(0));
+        } 
+    }
     
     public int getLastRowNumber (String path, int sheetNumber) throws IOException, InvalidFormatException {
         return xlsxI.getLastRow(path, sheetNumber);
@@ -174,10 +185,6 @@ public class DataManipulation {
             }
         energies.add(energy);
         
-        for(int i = 0; i < energies.size(); i++){
-            System.out.println(energies.get(i).getIndex());
-        }
-        
         }
         if(path.endsWith("Nuclide.csv")){
             Nuclide nuclide = new Nuclide();
@@ -215,10 +222,6 @@ public class DataManipulation {
                 nuclide.setDeltaEps(csvI.getValue(path, rowNumber, columnNumber.get(10)));
             }
             nuclides.add(nuclide);
-            
-            for(int i = 0; i < nuclides.size(); i++){
-                System.out.println(nuclides.get(i).getName());
-            }
             
         }
         
