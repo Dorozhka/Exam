@@ -10,6 +10,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 import javax.xml.bind.JAXBException;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import zadorozhko.exam_var3.manipulation.DataManipulation;
@@ -246,6 +247,10 @@ public class Menu extends javax.swing.JFrame {
         Import = new javax.swing.JButton();
         Export = new javax.swing.JButton();
         jTextField82 = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTable2 = new javax.swing.JTable();
 
         jLabel16.setText("Введите номера столбцов для соответствующих полей объектов. Если поле не надо заполнять, то оставьте соответствующее текстовое поле пустым.");
 
@@ -1523,39 +1528,114 @@ public class Menu extends javax.swing.JFrame {
             }
         });
 
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "date", "index", "buy", "sale", "tg", "NPP", "HPS", "TPP", "temperature", "planG", "planP", "factG", "factP", "consumption"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false, false, false, false, false, true, true
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jTable1.getTableHeader().setReorderingAllowed(false);
+        jScrollPane1.setViewportView(jTable1);
+        if (jTable1.getColumnModel().getColumnCount() > 0) {
+            jTable1.getColumnModel().getColumn(0).setResizable(false);
+            jTable1.getColumnModel().getColumn(1).setResizable(false);
+            jTable1.getColumnModel().getColumn(2).setResizable(false);
+            jTable1.getColumnModel().getColumn(3).setResizable(false);
+            jTable1.getColumnModel().getColumn(4).setResizable(false);
+            jTable1.getColumnModel().getColumn(5).setResizable(false);
+            jTable1.getColumnModel().getColumn(6).setResizable(false);
+            jTable1.getColumnModel().getColumn(7).setResizable(false);
+            jTable1.getColumnModel().getColumn(8).setResizable(false);
+            jTable1.getColumnModel().getColumn(9).setResizable(false);
+            jTable1.getColumnModel().getColumn(10).setResizable(false);
+            jTable1.getColumnModel().getColumn(11).setResizable(false);
+            jTable1.getColumnModel().getColumn(12).setResizable(false);
+            jTable1.getColumnModel().getColumn(13).setResizable(false);
+        }
+
+        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "name", "E", "deltaE", "deltaEPercent", "PShPV", "S", "deltaS", "deltaSPercent", "SFull", "eps", "deltaEps"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jTable2.getTableHeader().setReorderingAllowed(false);
+        jScrollPane2.setViewportView(jTable2);
+        if (jTable2.getColumnModel().getColumnCount() > 0) {
+            jTable2.getColumnModel().getColumn(0).setResizable(false);
+            jTable2.getColumnModel().getColumn(1).setResizable(false);
+            jTable2.getColumnModel().getColumn(2).setResizable(false);
+            jTable2.getColumnModel().getColumn(3).setResizable(false);
+            jTable2.getColumnModel().getColumn(4).setResizable(false);
+            jTable2.getColumnModel().getColumn(5).setResizable(false);
+            jTable2.getColumnModel().getColumn(6).setResizable(false);
+            jTable2.getColumnModel().getColumn(7).setResizable(false);
+            jTable2.getColumnModel().getColumn(8).setResizable(false);
+            jTable2.getColumnModel().getColumn(9).setResizable(false);
+            jTable2.getColumnModel().getColumn(10).setResizable(false);
+        }
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane1)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(57, 57, 57)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(Export, javax.swing.GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE)
-                    .addComponent(Import, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(ChooseFile, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
-                .addComponent(jTextField82, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(24, 24, 24))
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(ChooseFile, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(Import, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(Export, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jTextField82, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 10, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(ChooseFile, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(34, 34, 34)
-                .addComponent(Import, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 72, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(ChooseFile, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Import, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Export, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextField82, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(29, 29, 29))
+                .addGap(42, 42, 42)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(29, 29, 29)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(38, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 553, Short.MAX_VALUE)
+            .addGap(0, 856, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addContainerGap()
@@ -1564,7 +1644,7 @@ public class Menu extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 308, Short.MAX_VALUE)
+            .addGap(0, 439, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addContainerGap()
@@ -1575,6 +1655,10 @@ public class Menu extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    public static void AddRowToJTable (){
+        
+    }
+    
     private void ChooseFileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ChooseFileActionPerformed
         chooser = new JFileChooser(System.getProperty("user.dir"));
         int a = chooser.showDialog(null, "Выбрать файл");
@@ -1771,7 +1855,26 @@ public class Menu extends javax.swing.JFrame {
                 for (int i = Integer.parseInt(jTextField30.getText());
                         i < Integer.parseInt(jTextField30.getText()) + Integer.parseInt(jTextField31.getText()); i++) {
                     dm.importData(selectedFileName, sheetNum, i, colNum);
+                    
                 }
+                DefaultTableModel model1 = (DefaultTableModel)jTable1.getModel();
+                DefaultTableModel model2 = (DefaultTableModel)jTable2.getModel();
+                for(int i = model1.getRowCount(); i<dm.getEnergies().size(); i++) {
+                    model1.addRow(new Object[] { dm.getEnergies().get(i).getDate(), dm.getEnergies().get(i).getIndex(),
+                    dm.getEnergies().get(i).getBuy(), dm.getEnergies().get(i).getSale(), dm.getEnergies().get(i).getTg(),
+                    dm.getEnergies().get(i).getNPP(), dm.getEnergies().get(i).getHPS(), dm.getEnergies().get(i).getTPP(),
+                    dm.getEnergies().get(i).getTemperature(), dm.getEnergies().get(i).getPlanG(), dm.getEnergies().get(i).getPlanP(),
+                    dm.getEnergies().get(i).getFactG(), dm.getEnergies().get(i).getFactP(), dm.getEnergies().get(i).getConsumption()});
+                    
+                }
+                for(int i = model2.getRowCount(); i<dm.getNuclides().size(); i++) {
+                    model2.addRow(new Object[] { dm.getNuclides().get(i).getName(), dm.getNuclides().get(i).getE(), 
+                    dm.getNuclides().get(i).getDeltaE(), dm.getNuclides().get(i).getDeltaEPercent(), dm.getNuclides().get(i).getPShPV(),
+                    dm.getNuclides().get(i).getS(), dm.getNuclides().get(i).getDeltaS(), dm.getNuclides().get(i).getDeltaSPercent(),
+                    dm.getNuclides().get(i).getSFull(), dm.getNuclides().get(i).getEps(), dm.getNuclides().get(i).getDeltaEps()});
+                            
+                }
+                
                 JOptionPane.showMessageDialog(null, "Объекты успешно импортированы!", "Ок", JOptionPane.PLAIN_MESSAGE);
             }
 
@@ -1802,6 +1905,23 @@ public class Menu extends javax.swing.JFrame {
                 }
                 JOptionPane.showMessageDialog(null, "Объекты успешно импортированы!", "Ок", JOptionPane.PLAIN_MESSAGE);
             }
+                DefaultTableModel model1 = (DefaultTableModel)jTable1.getModel();
+                DefaultTableModel model2 = (DefaultTableModel)jTable2.getModel();
+                for(int i = model1.getRowCount(); i<dm.getEnergies().size(); i++) {
+                    model1.addRow(new Object[] { dm.getEnergies().get(i).getDate(), dm.getEnergies().get(i).getIndex(),
+                    dm.getEnergies().get(i).getBuy(), dm.getEnergies().get(i).getSale(), dm.getEnergies().get(i).getTg(),
+                    dm.getEnergies().get(i).getNPP(), dm.getEnergies().get(i).getHPS(), dm.getEnergies().get(i).getTPP(),
+                    dm.getEnergies().get(i).getTemperature(), dm.getEnergies().get(i).getPlanG(), dm.getEnergies().get(i).getPlanP(),
+                    dm.getEnergies().get(i).getFactG(), dm.getEnergies().get(i).getFactP(), dm.getEnergies().get(i).getConsumption()});
+                    
+                }
+                for(int i = model2.getRowCount(); i<dm.getNuclides().size(); i++) {
+                    model2.addRow(new Object[] { dm.getNuclides().get(i).getName(), dm.getNuclides().get(i).getE(), 
+                    dm.getNuclides().get(i).getDeltaE(), dm.getNuclides().get(i).getDeltaEPercent(), dm.getNuclides().get(i).getPShPV(),
+                    dm.getNuclides().get(i).getS(), dm.getNuclides().get(i).getDeltaS(), dm.getNuclides().get(i).getDeltaSPercent(),
+                    dm.getNuclides().get(i).getSFull(), dm.getNuclides().get(i).getEps(), dm.getNuclides().get(i).getDeltaEps()});
+                            
+                }
 
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(null, "Все поля должны быть заполнены неотрицательными целыми числами", "Ок", JOptionPane.PLAIN_MESSAGE);
@@ -2497,6 +2617,10 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JRadioButton jRadioButton3;
     private javax.swing.JRadioButton jRadioButton4;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTable2;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField10;
     private javax.swing.JTextField jTextField11;

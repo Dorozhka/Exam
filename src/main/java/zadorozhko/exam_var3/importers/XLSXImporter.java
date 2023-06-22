@@ -26,6 +26,9 @@ public class XLSXImporter extends Importer {
     public String getValue(String path, int sheetNumber, int rowNumber, int cellNumber) throws IOException, InvalidFormatException {
         String value = "";
         Open(path);
+        if(sheetNumber>workbook.getNumberOfSheets()-1){
+            sheetNumber = workbook.getNumberOfSheets()-1;
+        }
         sheet = workbook.getSheetAt(sheetNumber);
         Row row = sheet.getRow(rowNumber);
         if(row != null){
